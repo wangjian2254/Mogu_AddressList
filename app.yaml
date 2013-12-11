@@ -1,5 +1,5 @@
-application: mogu3-prop
-version: mogu3-prop
+application: wj-mogu3-address
+version: mogu3-address
 runtime: python27
 api_version: 1
 threadsafe: yes

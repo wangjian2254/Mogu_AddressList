@@ -29,8 +29,12 @@ def setAddress(address, username):
     p = getAddress(address)
     if not p:
         p = UserAddress(key_name=key)
-        p.username = username
+        p.username.append(username)
         p.put()
+    else:
+        if username not in p.username:
+            p.username.append(username)
+            p.put()
 
     memcache.set(key, p, 3600 * 24 * 7)
     return p
@@ -65,7 +69,8 @@ class UserNameQuery(Page):
                 if address:
                     p = getAddress(address)
                     if p:
-                        result['list'].append({'username':p.username, 'address':address})
+                        for username in p.username:
+                            result['list'].append({'username':username, 'address':address})
             self.flush(getResult(result,message=u'查询成功'))
         except:
             self.flush(getResult(False, False, u'查询失败。'))

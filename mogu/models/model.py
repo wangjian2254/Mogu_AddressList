@@ -16,7 +16,7 @@ class UserAddress(db.Model):
     '''
     model 的 key_name 由tel的密文构成
     '''
-    username = db.StringProperty()#用户名
+    username = db.StringListProperty()#用户名
     #address = db.StringProperty()#单点登录sessionid
 
 
